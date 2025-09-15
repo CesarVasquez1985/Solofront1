@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Productos</h3>
+  <a routerLink="/productos/nuevo" class="btn btn-primary btn-sm">Nuevo</a>
+</div>
+<div class="mb-3">
+  <input class="form-control" placeholder="Buscar por nombre o código" [ngModel]="filtro()" (ngModelChange)="filtro.set($event)" />
+</div>
+<div *ngIf="loading()" class="text-center my-4">
+  <div class="spinner-border" role="status"></div>
+</div>
+<table class="table table-striped" *ngIf="!loading() && filtered().length">
+  <thead>
+    <tr>
+      <th>Código</th><th>Nombre</th><th>Compra</th><th>Venta</th><th>Stock</th><th>Activo</th><th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of filtered()">
+      <td>{{p.codigo}}</td>
+      <td>{{p.nombre}}</td>
+      <td>{{p.precioCompra | currency:'USD':'symbol':'1.2-2'}}</td>
+      <td>{{p.precioVenta | currency:'USD':'symbol':'1.2-2'}}</td>
+      <td>{{p.stock}}</td>
+      <td>
+        <span class="badge" [class.bg-success]="p.activo" [class.bg-secondary]="!p.activo">{{p.activo? 'Sí':'No'}}</span>
+      </td>
+      <td class="text-end">
+        <a class="btn btn-sm btn-outline-secondary me-1" [routerLink]="['/productos/editar', p.id]">Editar</a>
+        <button class="btn btn-sm btn-outline-danger" (click)="eliminar(p)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p *ngIf="!loading() && !filtered().length" class="text-muted">Sin resultados.</p>

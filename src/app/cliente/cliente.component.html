@@ -1,0 +1,111 @@
+<div class="container-md">
+  <div class="row">
+    <button
+      type="button"
+      class="btn btno-utline-dark"
+      routerLink="/nuevo-cliente"
+    >
+      Nuevo Cliente
+    </button>
+
+    <div class="header">
+      <h1><h1>Lista de Clientes</h1></h1>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-responsive table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Direccion</th>
+          <th>Telefono</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of lista_clientes$; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ cliente.nombres }}</td>
+          <td>{{ cliente.apellidos }}</td>
+          <td>{{ cliente.direccion }}</td>
+          <td>{{ cliente.telefono }}</td>
+          <td>
+            <button
+              class="btn btn-outline-success"
+              routerLink="/editar-cliente/{{ cliente.id }}"
+            >
+              Editar
+            </button>
+            <button
+              class="btn btn-outline-danger"
+              (click)="eliminarCliente(cliente.id!)"
+            >
+              Eliminar
+            </button>
+            <button
+              class="btn btn-outline-danger"
+              (click)="variables_sesion(cliente.id!)"
+            >
+              Varaibles
+            </button>
+            <button class="btn btn-outline-danger" (click)="eliminarvariable()">
+              Eliminar Varaibles
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-responsive table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Direccion</th>
+          <th>Telefono</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(cliente of lista_clientes$; track cliente.id; let i = $index){
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ cliente.nombres }}</td>
+          <td>{{ cliente.apellidos }}</td>
+          <td>{{ cliente.direccion }}</td>
+          <td>{{ cliente.telefono }}</td>
+          <td>
+            <button
+              class="btn btn-outline-success"
+              routerLink="/editar-cliente/{{ cliente.id }}"
+            >
+              Editar
+            </button>
+            <button class="btn btn-outline-danger">Eliminar</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--
+
+componente
+    css   *
+    html  *
+    ts    
+ 
+Interfase *
+servicio  *
+
+
+
+
+
+
+-->

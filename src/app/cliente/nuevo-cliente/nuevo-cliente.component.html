@@ -1,0 +1,95 @@
+<!-- nombres:string
+    apellidos: string
+    direccion: string
+    telefono: string
+    cedula: string
+    correo: string
+-->
+<div class="container">
+  <h1>{{ titulo_formulario }}</h1>
+  <form [formGroup]="clienteforms" (ngSubmit)="guardarCliente()" novalidate>
+    <div class="form-group">
+      <label for="nombres">Nombres</label>
+      <input
+        formControlName="nombres"
+        type="text"
+        class="form-control"
+        id="nombres"
+        placeholder="Nombres"
+      />
+      <div
+        class="invalid-feedback d-block"
+        *ngIf="
+          clienteforms.get('nombres')?.touched &&
+          clienteforms.get('nombres')?.invalid
+        "
+      >
+        El nombre es requerido.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="apellidos">Apellidos</label>
+      <input
+        formControlName="apellidos"
+        type="text"
+        class="form-control"
+        id="apellidos"
+        placeholder="Apellidos"
+      />
+      <p class="help-block">Ingrese los apellidos del cliente</p>
+    </div>
+    <div class="form-group">
+      <label for="direccion">Dirección</label>
+      <input
+        formControlName="direccion"
+        type="text"
+        class="form-control"
+        id="direccion"
+        placeholder="Dirección"
+      />
+      <p class="help-block">Ingrese la dirección del cliente</p>
+    </div>
+    <div class="form-group">
+      <label for="telefono">Teléfono</label>
+      <input
+        formControlName="telefono"
+        type="text"
+        class="form-control"
+        id="telefono"
+        placeholder="Teléfono"
+      />
+      <p class="help-block">Ingrese el teléfono del cliente</p>
+    </div>
+    <div class="form-group">
+      <label for="cedula">Cédula</label>
+      <input
+        formControlName="cedula"
+        type="text"
+        class="form-control"
+        id="cedula"
+        placeholder="Cédula"
+      />
+      <p class="help-block">Ingrese la cédula del cliente</p>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        formControlName="correo"
+        class="form-control"
+        id="email"
+        placeholder="Email"
+      />
+      <p class="help-block">Ingrese el email del cliente</p>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!clienteforms.valid"
+    >
+      Guardar
+    </button>
+
+    <button class="btn btn-secondary" routerLink="/">Cancelar</button>
+  </form>
+</div>

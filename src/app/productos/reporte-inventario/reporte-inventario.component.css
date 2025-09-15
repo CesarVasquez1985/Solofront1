@@ -1,0 +1,8 @@
+.reporte-wrapper { font-size: 14px; }
+.resumen .card { background:#fff; border:1px solid #eee; }
+.chart-container { position: relative; }
+.table td, .table th { white-space: nowrap; }
+@media print {
+  .acciones { display:none !important; }
+  .card { page-break-inside: avoid; }
+}

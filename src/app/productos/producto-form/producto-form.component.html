@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>{{ editId ? 'Editar producto' : 'Nuevo producto' }}</h3>
+  <a routerLink="/productos" class="btn btn-outline-secondary btn-sm">Volver</a>
+</div>
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <div class="row g-3">
+    <div class="col-md-3">
+      <label class="form-label">Código</label>
+      <input class="form-control" formControlName="codigo" />
+      <div class="invalid-feedback d-block" *ngIf="form.controls.codigo.touched && form.controls.codigo.errors">Código requerido (>=3)</div>
+    </div>
+    <div class="col-md-5">
+      <label class="form-label">Nombre</label>
+      <input class="form-control" formControlName="nombre" />
+      <div class="invalid-feedback d-block" *ngIf="form.controls.nombre.touched && form.controls.nombre.errors">Nombre requerido</div>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Descripción</label>
+      <input class="form-control" formControlName="descripcion" />
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Precio Compra</label>
+      <input type="number" step="0.01" class="form-control" formControlName="precioCompra" />
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Precio Venta</label>
+      <input type="number" step="0.01" class="form-control" formControlName="precioVenta" />
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Stock</label>
+      <input type="number" class="form-control" formControlName="stock" />
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="activoCheck" formControlName="activo" />
+        <label class="form-check-label" for="activoCheck">Activo</label>
+      </div>
+    </div>
+  </div>
+  <div class="mt-4 d-flex gap-2">
+    <button class="btn btn-primary" type="submit" [disabled]="loading()">
+      <span *ngIf="!loading()">Guardar</span>
+      <span *ngIf="loading()" class="spinner-border spinner-border-sm"></span>
+    </button>
+    <button class="btn btn-outline-secondary" type="button" (click)="form.reset({activo:true, precioCompra:0, precioVenta:0, stock:0})">Limpiar</button>
+  </div>
+</form>
